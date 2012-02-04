@@ -11,8 +11,22 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello"
+        android:text="@string/introducirUrl"
         android:id="@+id/texto" />
+    
+    <EditText 
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/urlForo"
+        android:text="@string/urlForo"
+        android:inputType="textUri"/>
+    
+    <Button 
+        android:id="@+id/botonEntrar"
+        android:text="@string/botonEntrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="botonEntrarListener"/>
 
 </LinearLayout>
 </ScrollView>
