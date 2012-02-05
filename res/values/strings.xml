@@ -4,5 +4,7 @@
     <string name="introducirUrl">Introduzca la dirección del foro</string>
     <string name="urlForo">Dirección...</string>
     <string name="botonEntrar">Entrar</string>
+    <string name="mostrarPaginaForos">Mostrando Foros</string>
+    <string name="noForos">No hay foros</string>
 
 </resources>

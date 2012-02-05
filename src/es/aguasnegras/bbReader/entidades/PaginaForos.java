@@ -1,6 +1,11 @@
 package es.aguasnegras.bbReader.entidades;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 public class PaginaForos {
 
@@ -32,6 +37,21 @@ public class PaginaForos {
 
 	public void setForos(List<Foro> foros) {
 		this.foros = foros;
+	}
+
+	public void cargarForos(Document paginaForos) {
+		if (paginaForos != null) {
+			Elements forosHtml = paginaForos
+					.select("div.forabg > div.inner > ul.topiclist > li.header > dl.icon > dt > a");
+			if (!forosHtml.isEmpty()) {
+				this.foros = new ArrayList<Foro>();
+				for (Element foroHtml : forosHtml) {
+					Foro foro = new Foro();
+					foro.setTitulo(foroHtml.html());
+					this.foros.add(foro);
+				}
+			}
+		}
 	}
 
 	@Override
