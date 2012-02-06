@@ -47,7 +47,7 @@ public class PaginaForos {
 				this.foros = new ArrayList<Foro>();
 				for (Element foroHtml : forosHtml) {
 					Foro foro = new Foro();
-					foro.setTitulo(foroHtml.html());
+					foro.setTitulo(foroHtml.data());
 					this.foros.add(foro);
 				}
 			}
