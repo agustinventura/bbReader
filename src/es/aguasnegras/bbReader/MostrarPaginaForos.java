@@ -29,7 +29,7 @@ public class MostrarPaginaForos extends Activity {
 				.findViewById(R.id.listaPaginaForos);
 		PaginaForosAdapter adaptador = new PaginaForosAdapter(this,
 				this.paginaForos);
-		vistaLista.setAdapter(adaptador.getAdaptador());
+		vistaLista.setAdapter(adaptador);
 	}
 
 	private void cargarForos(String urlForo) {
