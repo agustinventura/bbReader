@@ -7,6 +7,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import android.text.Html;
+
 public class PaginaForos {
 
 	private String url;
@@ -47,7 +49,7 @@ public class PaginaForos {
 				this.foros = new ArrayList<Foro>();
 				for (Element foroHtml : forosHtml) {
 					Foro foro = new Foro();
-					foro.setTitulo(foroHtml.html());
+					foro.setTitulo(Html.fromHtml(foroHtml.html()).toString());
 					this.foros.add(foro);
 				}
 			}
