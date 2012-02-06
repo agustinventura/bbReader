@@ -1,0 +1,7 @@
+Comparando clubcbf.es y terrasomnia.com, parece que cada uno tiene una estructura html de su padre y de su madre.
+Creo que lo único que se puede hacer es tirar de las url, úsease, buscar y parsear el documento.
+Por ejemplo:
+	Foro ClubCBF: 			http://www.clubcbf.es/foro/viewforum.php?f=28
+	Comunidad Terrasomnia: 	http://www.terrasomnia.com/40000/viewforum.php?f=27
+	General:				http://www.clubcbf.es/foro/viewforum.php?f=2
+	Tablón de Anuncios:		http://www.terrasomnia.com/40000/viewforum.php?f=3
