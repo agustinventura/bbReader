@@ -43,14 +43,17 @@ public class PaginaForos {
 
 	public void cargarForos(Document paginaForos) {
 		if (paginaForos != null) {
-			Elements forosHtml = paginaForos
-					.select("div.forabg > div.inner > ul.topiclist > li.header > dl.icon > dt > a");
+			Elements forosHtml = paginaForos.select("a[href]");
 			if (!forosHtml.isEmpty()) {
 				this.foros = new ArrayList<Foro>();
 				for (Element foroHtml : forosHtml) {
-					Foro foro = new Foro();
-					foro.setTitulo(Html.fromHtml(foroHtml.html()).toString());
-					this.foros.add(foro);
+					if (foroHtml.attr("href").contains("viewforum.php")) {
+						Foro foro = new Foro();
+						foro.setTitulo(Html.fromHtml(foroHtml.text())
+								.toString());
+						foro.setUrl(foroHtml.attr("abs:href"));
+						this.foros.add(foro);
+					}
 				}
 			}
 		}

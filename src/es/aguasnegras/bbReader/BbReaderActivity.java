@@ -17,13 +17,23 @@ public class BbReaderActivity extends Activity {
 
 	public void botonEntrarListener(View v) {
 		EditText editUrl = (EditText) findViewById(R.id.urlForo);
-		String urlForo = editUrl.getText().toString();
+		String urlForo = this.comprobarHttp(editUrl.getText().toString());
+		if (!urlForo.isEmpty()) {
+			this.cargarPaginaForos(urlForo);
+		}
+	}
+
+	private String comprobarHttp(String urlForo) {
 		if (urlForo.isEmpty()
 				|| urlForo.equalsIgnoreCase(this.getString(R.string.urlForo))) {
 			Toast.makeText(this, "Dirección no válida", Toast.LENGTH_LONG);
 		} else {
-			this.cargarPaginaForos(urlForo);
+			String http = urlForo.substring(0, 6);
+			if (!http.equalsIgnoreCase("http://")) {
+				urlForo = "http://" + urlForo;
+			}
 		}
+		return urlForo;
 	}
 
 	private void cargarPaginaForos(String urlForo) {
