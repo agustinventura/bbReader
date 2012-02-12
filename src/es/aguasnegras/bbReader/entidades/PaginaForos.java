@@ -3,9 +3,7 @@ package es.aguasnegras.bbReader.entidades;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 import android.text.Html;
 
@@ -41,21 +39,13 @@ public class PaginaForos {
 		this.foros = foros;
 	}
 
-	public void cargarForos(Document paginaForos) {
-		if (paginaForos != null) {
-			Elements forosHtml = paginaForos.select("a[href]");
-			if (!forosHtml.isEmpty()) {
-				this.foros = new ArrayList<Foro>();
-				for (Element foroHtml : forosHtml) {
-					if (foroHtml.attr("href").contains("viewforum.php")) {
-						Foro foro = new Foro();
-						foro.setTitulo(Html.fromHtml(foroHtml.text())
-								.toString());
-						foro.setUrl(foroHtml.attr("abs:href"));
-						this.foros.add(foro);
-					}
-				}
-			}
+	public void cargarForos(List<Element> linksForos) {
+		this.foros = new ArrayList<Foro>();
+		for (Element foroHtml : linksForos) {
+			Foro foro = new Foro();
+			foro.setTitulo(Html.fromHtml(foroHtml.text()).toString());
+			foro.setUrl(foroHtml.attr("abs:href"));
+			this.foros.add(foro);
 		}
 	}
 

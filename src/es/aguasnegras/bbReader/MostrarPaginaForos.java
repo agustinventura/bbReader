@@ -1,9 +1,13 @@
 package es.aguasnegras.bbReader;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -42,6 +46,27 @@ public class MostrarPaginaForos extends Activity {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		this.paginaForos.cargarForos(pagina);
+		if (pagina != null) {
+			List<Element> linksForos = this.cargarForos(pagina);
+			this.paginaForos.cargarForos(linksForos);
+		}
+	}
+
+	private List<Element> cargarForos(Document pagina) {
+		List<Element> forosRaices = new ArrayList<Element>();
+		this.buscarLinkRaiz(pagina.getElementsByTag("body").get(0), forosRaices);
+		return forosRaices;
+	}
+
+	private void buscarLinkRaiz(Element raiz, List<Element> forosRaices) {
+		if (raiz.attr("href").contains("viewforum.php")) {
+			forosRaices.add(raiz);
+		} else {
+			Elements hijos = raiz.children();
+			for (int i = 0; i < hijos.size(); i++) {
+				Element raizPosible = hijos.get(i);
+				this.buscarLinkRaiz(raizPosible, forosRaices);
+			}
+		}
 	}
 }
