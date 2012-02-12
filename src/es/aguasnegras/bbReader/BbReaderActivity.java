@@ -19,6 +19,8 @@ public class BbReaderActivity extends Activity {
 		EditText editUrl = (EditText) findViewById(R.id.urlForo);
 		String urlForo = this.comprobarHttp(editUrl.getText().toString());
 		if (!urlForo.isEmpty()) {
+			// TODO: Cuidado, esto ya no es tan fácil, hay que comprobar si hay
+			// que mostrar un metaforo o un foro
 			this.cargarPaginaForos(urlForo);
 		}
 	}
@@ -37,7 +39,7 @@ public class BbReaderActivity extends Activity {
 	}
 
 	private void cargarPaginaForos(String urlForo) {
-		Intent intent = new Intent(this, MostrarPaginaForos.class);
+		Intent intent = new Intent(this, MostrarMetaForo.class);
 		intent.putExtra("urlForo", urlForo);
 		startActivity(intent);
 	}

@@ -8,24 +8,24 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import es.aguasnegras.bbReader.R;
 import es.aguasnegras.bbReader.entidades.Foro;
-import es.aguasnegras.bbReader.entidades.PaginaForos;
+import es.aguasnegras.bbReader.entidades.MetaForo;
 
-public class PaginaForosAdapter extends BaseAdapter {
+public class MetaForoAdapter extends BaseAdapter {
 
-	private PaginaForos paginaForos = null;
+	private MetaForo metaForo = null;
 	private Context contexto = null;
 
-	public PaginaForosAdapter(Context contexto, PaginaForos paginaForos) {
+	public MetaForoAdapter(Context contexto, MetaForo metaForo) {
 		this.contexto = contexto;
-		this.paginaForos = paginaForos;
+		this.setMetaForo(metaForo);
 	}
 
-	public PaginaForos getPaginaForos() {
-		return paginaForos;
+	public MetaForo getMetaForo() {
+		return metaForo;
 	}
 
-	public void setPaginaForos(PaginaForos paginaForos) {
-		this.paginaForos = paginaForos;
+	public void setMetaForo(MetaForo metaForo) {
+		this.metaForo = metaForo;
 	}
 
 	public Context getContexto() {
@@ -39,9 +39,9 @@ public class PaginaForosAdapter extends BaseAdapter {
 	@Override
 	public int getCount() {
 		int numeroElementos = 0;
-		if (this.paginaForos != null) {
-			if (this.paginaForos.getForos() != null) {
-				numeroElementos = this.paginaForos.getForos().size();
+		if (this.metaForo != null) {
+			if (this.metaForo.getForos() != null) {
+				numeroElementos = this.metaForo.getForos().size();
 			}
 		}
 		return numeroElementos;
@@ -50,10 +50,9 @@ public class PaginaForosAdapter extends BaseAdapter {
 	@Override
 	public Object getItem(int posicion) {
 		Object resultado = null;
-		if (this.paginaForos != null && this.paginaForos.getForos() != null
-				&& posicion >= 0
-				&& posicion < this.paginaForos.getForos().size()) {
-			resultado = this.paginaForos.getForos().get(posicion);
+		if (this.metaForo != null && this.metaForo.getForos() != null
+				&& posicion >= 0 && posicion < this.metaForo.getForos().size()) {
+			resultado = this.metaForo.getForos().get(posicion);
 		}
 		return resultado;
 	}
