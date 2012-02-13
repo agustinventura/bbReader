@@ -1,11 +1,23 @@
 package es.aguasnegras.bbReader.entidades;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.jsoup.nodes.Element;
+
+import android.text.Html;
 
 public class Foro {
 
 	private String url;
 
 	private String titulo;
+
+	private List<Foro> foros;
+
+	public Foro() {
+		this.foros = new ArrayList<Foro>();
+	}
 
 	public String getUrl() {
 		return url;
@@ -21,6 +33,24 @@ public class Foro {
 
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
+	}
+
+	public List<Foro> getForos() {
+		return foros;
+	}
+
+	public void setForos(List<Foro> foros) {
+		this.foros = foros;
+	}
+
+	public void cargarForos(List<Element> forosHtml) {
+		this.foros = new ArrayList<Foro>();
+		for (Element foroHtml : forosHtml) {
+			Foro foro = new Foro();
+			foro.setTitulo(Html.fromHtml(foroHtml.text()).toString());
+			foro.setUrl(foroHtml.attr("abs:href"));
+			this.foros.add(foro);
+		}
 	}
 
 	@Override

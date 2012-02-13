@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+import es.aguasnegras.bbReader.entidades.Foro;
+import es.aguasnegras.bbReader.servicios.ServicioForos;
 
 public class BbReaderActivity extends Activity {
 
@@ -17,17 +19,15 @@ public class BbReaderActivity extends Activity {
 
 	public void botonEntrarListener(View v) {
 		EditText editUrl = (EditText) findViewById(R.id.urlForo);
-		String urlForo = this.comprobarHttp(editUrl.getText().toString());
+		String urlForo = editUrl.getText().toString();
 		if (!urlForo.isEmpty()) {
-			// TODO: Cuidado, esto ya no es tan fácil, hay que comprobar si hay
-			// que mostrar un metaforo o un foro
+			urlForo = this.comprobarHttp(urlForo);
 			this.cargarPaginaForos(urlForo);
 		}
 	}
 
 	private String comprobarHttp(String urlForo) {
-		if (urlForo.isEmpty()
-				|| urlForo.equalsIgnoreCase(this.getString(R.string.urlForo))) {
+		if (urlForo.isEmpty()) {
 			Toast.makeText(this, "Dirección no válida", Toast.LENGTH_LONG);
 		} else {
 			String http = urlForo.substring(0, 6);
@@ -39,8 +39,15 @@ public class BbReaderActivity extends Activity {
 	}
 
 	private void cargarPaginaForos(String urlForo) {
-		Intent intent = new Intent(this, MostrarMetaForo.class);
-		intent.putExtra("urlForo", urlForo);
+		ServicioForos servicioForos = new ServicioForos();
+		Foro foro = servicioForos.cargarForos(urlForo);
+		BbReader bbReader = (BbReader) this.getApplicationContext();
+		bbReader.setForo(foro);
+		this.enviarAMostrarForo();
+	}
+
+	private void enviarAMostrarForo() {
+		Intent intent = new Intent(this, MostrarForo.class);
 		startActivity(intent);
 	}
 }

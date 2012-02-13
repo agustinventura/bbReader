@@ -8,24 +8,23 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import es.aguasnegras.bbReader.R;
 import es.aguasnegras.bbReader.entidades.Foro;
-import es.aguasnegras.bbReader.entidades.MetaForo;
 
-public class MetaForoAdapter extends BaseAdapter {
+public class ForoAdapter extends BaseAdapter {
 
-	private MetaForo metaForo = null;
+	private Foro foro = null;
 	private Context contexto = null;
 
-	public MetaForoAdapter(Context contexto, MetaForo metaForo) {
+	public ForoAdapter(Context contexto, Foro foro) {
 		this.contexto = contexto;
-		this.setMetaForo(metaForo);
+		this.foro = foro;
 	}
 
-	public MetaForo getMetaForo() {
-		return metaForo;
+	public Foro getForo() {
+		return foro;
 	}
 
-	public void setMetaForo(MetaForo metaForo) {
-		this.metaForo = metaForo;
+	public void setForo(Foro foro) {
+		this.foro = foro;
 	}
 
 	public Context getContexto() {
@@ -39,9 +38,9 @@ public class MetaForoAdapter extends BaseAdapter {
 	@Override
 	public int getCount() {
 		int numeroElementos = 0;
-		if (this.metaForo != null) {
-			if (this.metaForo.getForos() != null) {
-				numeroElementos = this.metaForo.getForos().size();
+		if (this.foro != null) {
+			if (this.foro.getForos() != null) {
+				numeroElementos = this.foro.getForos().size();
 			}
 		}
 		return numeroElementos;
@@ -50,9 +49,9 @@ public class MetaForoAdapter extends BaseAdapter {
 	@Override
 	public Object getItem(int posicion) {
 		Object resultado = null;
-		if (this.metaForo != null && this.metaForo.getForos() != null
-				&& posicion >= 0 && posicion < this.metaForo.getForos().size()) {
-			resultado = this.metaForo.getForos().get(posicion);
+		if (this.foro != null && this.foro.getForos() != null && posicion >= 0
+				&& posicion < this.foro.getForos().size()) {
+			resultado = this.foro.getForos().get(posicion);
 		}
 		return resultado;
 	}

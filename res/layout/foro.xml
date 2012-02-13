@@ -3,11 +3,11 @@
    android:layout_width="fill_parent"
    android:layout_height="fill_parent">
 	<ListView
-	    android:id="@+id/listaPaginaForos"
+	    android:id="@+id/listaForos"
 	    android:layout_width="fill_parent"
 	    android:layout_height="fill_parent"/>
 	<TextView
-	    android:id="@+id/paginaNoForos"
+	    android:id="@+id/noForos"
 	    android:layout_width="fill_parent"
 	    android:layout_height="fill_parent"
 	    android:text="@string/noForos"/>
