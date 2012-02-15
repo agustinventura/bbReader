@@ -5,3 +5,18 @@ Por ejemplo:
 	Comunidad Terrasomnia: 	http://www.terrasomnia.com/40000/viewforum.php?f=27
 	General:				http://www.clubcbf.es/foro/viewforum.php?f=2
 	Tablón de Anuncios:		http://www.terrasomnia.com/40000/viewforum.php?f=3
+
+Vale, a ver, un Foro siempre tiene forma <a href="*.viewforum.*">...
+
+Si quiero un foro "raíz", la estructura es:
+	<a href=> Lo que sea menos viewforum
+	<a href="*.viewforum.*">
+	<a href="*.viewforum.*">
+
+Un foro normal tiene estructura:
+	<a href="*.viewforum.*">
+	<a href="*.memberlist.*">
+
+En cada página tengo que ir cargando los foros raices y comprobando si hay temas, que son de la forma:
+<a href="*viewtopic*">
+<a href="*memberlist*">
