@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-import es.aguasnegras.bbReader.entidades.Foro;
-import es.aguasnegras.bbReader.servicios.ServicioForos;
 
 public class BbReaderActivity extends Activity {
 
@@ -22,7 +20,7 @@ public class BbReaderActivity extends Activity {
 		String urlForo = editUrl.getText().toString();
 		if (!urlForo.isEmpty()) {
 			urlForo = this.comprobarHttp(urlForo);
-			this.cargarPaginaForos(urlForo);
+			this.enviarAMostrarForo(urlForo);
 		}
 	}
 
@@ -38,16 +36,9 @@ public class BbReaderActivity extends Activity {
 		return urlForo;
 	}
 
-	private void cargarPaginaForos(String urlForo) {
-		ServicioForos servicioForos = new ServicioForos();
-		Foro foro = servicioForos.cargarForos(urlForo);
-		BbReader bbReader = (BbReader) this.getApplicationContext();
-		bbReader.setForo(foro);
-		this.enviarAMostrarForo();
-	}
-
-	private void enviarAMostrarForo() {
+	private void enviarAMostrarForo(String urlForo) {
 		Intent intent = new Intent(this, MostrarForo.class);
+		intent.putExtra("urlForo", urlForo);
 		startActivity(intent);
 	}
 }

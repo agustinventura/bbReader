@@ -3,10 +3,6 @@ package es.aguasnegras.bbReader.entidades;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jsoup.nodes.Element;
-
-import android.text.Html;
-
 public class Foro {
 
 	private String url;
@@ -15,8 +11,11 @@ public class Foro {
 
 	private List<Foro> foros;
 
+	private List<Tema> temas;
+
 	public Foro() {
 		this.foros = new ArrayList<Foro>();
+		this.temas = new ArrayList<Tema>();
 	}
 
 	public String getUrl() {
@@ -43,14 +42,12 @@ public class Foro {
 		this.foros = foros;
 	}
 
-	public void cargarForos(List<Element> forosHtml) {
-		this.foros = new ArrayList<Foro>();
-		for (Element foroHtml : forosHtml) {
-			Foro foro = new Foro();
-			foro.setTitulo(Html.fromHtml(foroHtml.text()).toString());
-			foro.setUrl(foroHtml.attr("abs:href"));
-			this.foros.add(foro);
-		}
+	public List<Tema> getTemas() {
+		return temas;
+	}
+
+	public void setTemas(List<Tema> temas) {
+		this.temas = temas;
 	}
 
 	@Override
