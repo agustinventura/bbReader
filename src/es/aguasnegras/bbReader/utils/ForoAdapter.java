@@ -70,7 +70,7 @@ public class ForoAdapter extends BaseAdapter {
 		TextView texto = (TextView) vistaFila.findViewById(R.id.filaForo);
 		Object foro = this.getItem(posicion);
 		if (foro != null) {
-			texto.setText(((Foro) foro).getTitulo());
+			texto.setText(((Foro) foro).getPagina().getTitulo());
 		}
 		return vistaFila;
 	}

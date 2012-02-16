@@ -22,7 +22,7 @@ public class MostrarForo extends Activity {
 	private void cargarForo() {
 		String urlForo = (String) this.getIntent().getExtras().get("urlForo");
 		ServicioForos servicioForos = new ServicioForos();
-		this.foro = servicioForos.analizarPagina(urlForo);
+		this.foro = servicioForos.cargarForo(urlForo);
 	}
 
 	private void mostrarForos() {
