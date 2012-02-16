@@ -63,16 +63,16 @@ public class ForoAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int posicion, View convertView, ViewGroup parentView) {
+		View vistaFila = convertView;
 		LayoutInflater inflater = (LayoutInflater) contexto
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View vistaFila = inflater
-				.inflate(R.layout.fila_foro, parentView, false);
+		vistaFila = inflater.inflate(R.layout.fila_foro, parentView, false);
 		TextView texto = (TextView) vistaFila.findViewById(R.id.filaForo);
+
 		Object foro = this.getItem(posicion);
 		if (foro != null) {
 			texto.setText(((Foro) foro).getPagina().getTitulo());
 		}
 		return vistaFila;
 	}
-
 }
